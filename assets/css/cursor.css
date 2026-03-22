@@ -1,0 +1,86 @@
+/* ── Hide native cursor ── */
+body {
+    cursor: none;
+}
+
+/* ── Shared base ── */
+.scc-dot,
+.scc-outline,
+.scc-crosshair-h,
+.scc-crosshair-v {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+    border-radius: 50%;
+}
+
+/* ─────────────────────────────────────────
+   DOT
+───────────────────────────────────────── */
+.scc-dot {
+    width:  var(--scc-dot-size, 6px);
+    height: var(--scc-dot-size, 6px);
+    background:    var(--scc-dot-color, #fff);
+    mix-blend-mode: var(--scc-blend, difference);
+}
+
+/* ─────────────────────────────────────────
+   OUTLINE / RING
+───────────────────────────────────────── */
+.scc-outline {
+    width:  var(--scc-outline-size, 28px);
+    height: var(--scc-outline-size, 28px);
+    border: var(--scc-outline-wt, 2px) solid var(--scc-outline-color, #fff);
+    background: transparent;
+    mix-blend-mode: var(--scc-blend, difference);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+/* ─────────────────────────────────────────
+   FILLED RING (ring-fill type)
+   The dot is hidden; the outline gets a
+   semi-transparent fill via JS class.
+───────────────────────────────────────── */
+/* Filled Ring: semi-transparent fill. color-mix() is supported in all modern browsers
+   (Chrome 111+, Firefox 113+, Safari 16.2+). Older browsers fall back to transparent,
+   which is acceptable graceful degradation. */
+.scc-outline.scc-ring-fill {
+    background: color-mix(in srgb, var(--scc-outline-color, #fff) 20%, transparent);
+}
+
+/* ─────────────────────────────────────────
+   CROSSHAIR lines
+───────────────────────────────────────── */
+.scc-crosshair-h,
+.scc-crosshair-v {
+    border-radius: 0;
+    background: var(--scc-outline-color, #fff);
+    mix-blend-mode: var(--scc-blend, difference);
+}
+.scc-crosshair-h {
+    width:  var(--scc-outline-size, 28px);
+    height: var(--scc-outline-wt, 2px);
+}
+.scc-crosshair-v {
+    width:  var(--scc-outline-wt, 2px);
+    height: var(--scc-outline-size, 28px);
+}
+
+/* ─────────────────────────────────────────
+   Mobile / touch — restore native cursor
+   (overridden by JS when enable_on_mobile=1)
+───────────────────────────────────────── */
+@media (max-width: 1024px), (pointer: coarse) {
+    body:not(.scc-force-custom) {
+        cursor: auto;
+    }
+    body:not(.scc-force-custom) .scc-dot,
+    body:not(.scc-force-custom) .scc-outline,
+    body:not(.scc-force-custom) .scc-crosshair-h,
+    body:not(.scc-force-custom) .scc-crosshair-v {
+        display: none !important;
+    }
+}
