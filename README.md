@@ -46,3 +46,78 @@ Designed to be lightweight, fast, and compatible with modern themes and page bui
 ### Method 2: Manual install
 
 1. Copy the plugin folder to:
+/wp-content/plugins/simple-custom-cursor/
+2. Activate the plugin from the WordPress dashboard
+
+---
+
+## Usage
+
+After activation:
+
+1. Go to **Settings → Custom Cursor**
+2. Choose your cursor style
+3. Adjust colors, sizes, and behavior
+4. Save changes
+
+The cursor will automatically apply to the frontend of your site.
+
+---
+
+## Folder Structure
+simple-custom-cursor/
+├── simple-custom-cursor.php
+├── readme.txt
+├── assets/
+│ ├── css/
+│ └── js/
+├── admin/
+
+---
+
+## Compatibility
+
+- WordPress 5.5+
+- PHP 7.4+
+- Works with:
+  - Avada
+  - Elementor
+  - Divi
+  - Most modern themes
+
+---
+
+## Performance Notes
+
+- Minimal CSS and JavaScript footprint
+- No impact on backend/admin performance
+- Optimized to avoid unnecessary DOM updates
+
+---
+
+## Roadmap
+
+- More cursor styles
+- Per-page enable/disable
+- Custom cursor triggers (hover targets)
+- Animation presets
+
+---
+
+## Contributing
+
+Pull requests are welcome. For major changes, open an issue first to discuss what you’d like to change.
+
+---
+
+## License
+
+GPL v2 or later  
+https://www.gnu.org/licenses/gpl-2.0.html
+
+---
+
+## Author
+
+Developed by Safa Tash  
+https://www.novaadvertising.com
