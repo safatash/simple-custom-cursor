@@ -1,0 +1,86 @@
+/* ── Hide native cursor ── */
+body {
+    cursor: none;
+}
+
+/* ── Shared base ── */
+.simpcucu-dot,
+.simpcucu-outline,
+.simpcucu-crosshair-h,
+.simpcucu-crosshair-v {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+    border-radius: 50%;
+}
+
+/* ─────────────────────────────────────────
+   DOT
+───────────────────────────────────────── */
+.simpcucu-dot {
+    width:  var(--simpcucu-dot-size, 6px);
+    height: var(--simpcucu-dot-size, 6px);
+    background:    var(--simpcucu-dot-color, #fff);
+    mix-blend-mode: var(--simpcucu-blend, difference);
+}
+
+/* ─────────────────────────────────────────
+   OUTLINE / RING
+───────────────────────────────────────── */
+.simpcucu-outline {
+    width:  var(--simpcucu-outline-size, 28px);
+    height: var(--simpcucu-outline-size, 28px);
+    border: var(--simpcucu-outline-wt, 2px) solid var(--simpcucu-outline-color, #fff);
+    background: transparent;
+    mix-blend-mode: var(--simpcucu-blend, difference);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+/* ─────────────────────────────────────────
+   FILLED RING (ring-fill type)
+   The dot is hidden; the outline gets a
+   semi-transparent fill via JS class.
+───────────────────────────────────────── */
+/* Filled Ring: semi-transparent fill. color-mix() is supported in all modern browsers
+   (Chrome 111+, Firefox 113+, Safari 16.2+). Older browsers fall back to transparent,
+   which is acceptable graceful degradation. */
+.simpcucu-outline.simpcucu-ring-fill {
+    background: color-mix(in srgb, var(--simpcucu-outline-color, #fff) 20%, transparent);
+}
+
+/* ─────────────────────────────────────────
+   CROSSHAIR lines
+───────────────────────────────────────── */
+.simpcucu-crosshair-h,
+.simpcucu-crosshair-v {
+    border-radius: 0;
+    background: var(--simpcucu-outline-color, #fff);
+    mix-blend-mode: var(--simpcucu-blend, difference);
+}
+.simpcucu-crosshair-h {
+    width:  var(--simpcucu-outline-size, 28px);
+    height: var(--simpcucu-outline-wt, 2px);
+}
+.simpcucu-crosshair-v {
+    width:  var(--simpcucu-outline-wt, 2px);
+    height: var(--simpcucu-outline-size, 28px);
+}
+
+/* ─────────────────────────────────────────
+   Mobile / touch — restore native cursor
+   (overridden by JS when enable_on_mobile=1)
+───────────────────────────────────────── */
+@media (max-width: 1024px), (pointer: coarse) {
+    body:not(.simpcucu-force-custom) {
+        cursor: auto;
+    }
+    body:not(.simpcucu-force-custom) .simpcucu-dot,
+    body:not(.simpcucu-force-custom) .simpcucu-outline,
+    body:not(.simpcucu-force-custom) .simpcucu-crosshair-h,
+    body:not(.simpcucu-force-custom) .simpcucu-crosshair-v {
+        display: none !important;
+    }
+}

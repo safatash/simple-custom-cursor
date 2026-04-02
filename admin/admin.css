@@ -1,0 +1,789 @@
+/* ============================================================
+   Simple Custom Cursor — Admin Settings UI
+   ============================================================ */
+
+/* ── Reset & base ── */
+.simpcucu-wrap * {
+    box-sizing: border-box;
+}
+
+.simpcucu-wrap {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 980px;
+    margin-top: 16px;
+}
+
+/* ── Page header ── */
+.simpcucu-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.simpcucu-header-icon {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(102,126,234,.35);
+}
+
+.simpcucu-header-text h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 0 0 2px;
+    padding: 0;
+    color: #1a202c;
+    line-height: 1.2;
+}
+
+.simpcucu-header-text p {
+    margin: 0;
+    color: #718096;
+    font-size: 0.82rem;
+}
+
+/* ── Main layout: sidebar tabs + content ── */
+.simpcucu-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* ── Sidebar nav ── */
+.simpcucu-sidebar {
+    width: 190px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 32px;
+}
+
+.simpcucu-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+
+.simpcucu-nav li {
+    margin: 0;
+    padding: 0;
+}
+
+.simpcucu-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 11px 16px;
+    background: none;
+    border: none;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: #4a5568;
+    text-align: left;
+    transition: background .15s, color .15s, border-color .15s;
+}
+
+.simpcucu-nav li + li .simpcucu-nav-btn {
+    border-top: 1px solid #f0f4f8;
+}
+
+.simpcucu-nav-btn:hover {
+    background: #f7fafc;
+    color: #2d3748;
+}
+
+.simpcucu-nav-btn.active {
+    background: #f0f4ff;
+    color: #4c51bf;
+    border-left-color: #667eea;
+    font-weight: 600;
+}
+
+.simpcucu-nav-icon {
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* ── Content area ── */
+.simpcucu-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ── Tab panels ── */
+.simpcucu-tab {
+    display: none;
+}
+.simpcucu-tab.active {
+    display: block;
+}
+
+/* ── Panel card ── */
+.simpcucu-panel {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 28px 28px 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    margin-bottom: 16px;
+}
+
+.simpcucu-panel-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin: 0 0 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.simpcucu-panel-title .simpcucu-title-icon {
+    font-size: 1.1rem;
+}
+
+.simpcucu-panel-desc {
+    font-size: 0.8rem;
+    color: #718096;
+    margin: 0 0 22px;
+}
+
+/* ── Divider ── */
+.simpcucu-divider {
+    border: none;
+    border-top: 1px solid #edf2f7;
+    margin: 18px 0;
+}
+
+/* ─────────────────────────────────────────
+   CURSOR TYPE GRID
+───────────────────────────────────────── */
+.simpcucu-type-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.simpcucu-type-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 88px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color .18s, background .18s, box-shadow .18s, transform .12s;
+    background: #fafbfc;
+    padding: 10px 8px 8px;
+    user-select: none;
+}
+
+.simpcucu-type-card input[type="radio"] {
+    display: none;
+}
+
+.simpcucu-type-card:hover {
+    border-color: #a3b1f8;
+    background: #f5f7ff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102,126,234,.12);
+}
+
+.simpcucu-type-card.active {
+    border-color: #667eea;
+    background: #f0f4ff;
+    box-shadow: 0 0 0 3px rgba(102,126,234,.18), 0 4px 12px rgba(102,126,234,.15);
+    transform: translateY(-1px);
+}
+
+.simpcucu-type-preview {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    position: relative;
+}
+
+/* SVG-based cursor previews */
+.simpcucu-type-preview svg {
+    width: 36px;
+    height: 36px;
+}
+
+.simpcucu-type-label {
+    font-size: 0.7rem;
+    text-align: center;
+    color: #4a5568;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.simpcucu-type-card.active .simpcucu-type-label {
+    color: #4c51bf;
+}
+
+/* ─────────────────────────────────────────
+   COLOR ROWS
+───────────────────────────────────────── */
+.simpcucu-field-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+}
+
+.simpcucu-field-row + .simpcucu-field-row {
+    border-top: 1px solid #f0f4f8;
+}
+
+.simpcucu-field-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #2d3748;
+    flex: 1;
+}
+
+.simpcucu-field-sub {
+    display: block;
+    font-size: 0.73rem;
+    font-weight: 400;
+    color: #a0aec0;
+    margin-top: 1px;
+}
+
+.simpcucu-field-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* Color swatch + picker */
+.simpcucu-color-swatch {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.simpcucu-color-swatch:hover {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102,126,234,.15);
+}
+
+.simpcucu-color-swatch input[type="color"] {
+    position: absolute;
+    inset: -4px;
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.simpcucu-color-dot {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    pointer-events: none;
+}
+
+.simpcucu-hex-input {
+    width: 82px;
+    height: 34px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 0.82rem;
+    color: #2d3748;
+    padding: 0 10px;
+    transition: border-color .15s, box-shadow .15s;
+    background: #fafbfc;
+}
+
+.simpcucu-hex-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102,126,234,.15);
+    background: #fff;
+}
+
+/* Blend mode select */
+.simpcucu-select {
+    height: 34px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    color: #2d3748;
+    padding: 0 28px 0 10px;
+    background: #fafbfc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23718096'/%3E%3C/svg%3E") no-repeat right 10px center;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.simpcucu-select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102,126,234,.15);
+    background-color: #fff;
+}
+
+/* ─────────────────────────────────────────
+   RANGE SLIDERS
+───────────────────────────────────────── */
+.simpcucu-slider-row {
+    padding: 10px 0;
+}
+
+.simpcucu-slider-row + .simpcucu-slider-row {
+    border-top: 1px solid #f0f4f8;
+}
+
+.simpcucu-slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.simpcucu-slider-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #2d3748;
+}
+
+.simpcucu-slider-hint {
+    font-size: 0.73rem;
+    color: #a0aec0;
+}
+
+.simpcucu-slider-value-badge {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #4c51bf;
+    background: #eef2ff;
+    border-radius: 20px;
+    padding: 2px 9px;
+    min-width: 42px;
+    text-align: center;
+    display: inline-block;
+}
+
+.simpcucu-range-track {
+    position: relative;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 6px;
+    margin-bottom: 2px;
+}
+
+.simpcucu-range-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 6px;
+    pointer-events: none;
+    transition: width .08s;
+}
+
+.simpcucu-range {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    margin: 0;
+}
+
+.simpcucu-range-thumb-row {
+    position: relative;
+    height: 20px;
+    margin-top: -13px;
+    pointer-events: none;
+}
+
+.simpcucu-range-thumb {
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid #667eea;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 6px rgba(102,126,234,.3);
+    transition: left .08s;
+    pointer-events: none;
+}
+
+/* Visible range input (fallback for browsers) */
+.simpcucu-range-visible {
+    width: 100%;
+    height: 6px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    cursor: pointer;
+    margin: 0;
+    display: block;
+}
+
+.simpcucu-range-visible::-webkit-slider-runnable-track {
+    height: 6px;
+    background: linear-gradient(
+        to right,
+        #667eea 0%,
+        #764ba2 var(--simpcucu-fill, 0%),
+        #e2e8f0 var(--simpcucu-fill, 0%),
+        #e2e8f0 100%
+    );
+    border-radius: 6px;
+}
+
+.simpcucu-range-visible::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    margin-top: -7px;
+    background: #fff;
+    border: 2px solid #667eea;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(102,126,234,.3);
+    cursor: pointer;
+    transition: box-shadow .15s;
+}
+
+.simpcucu-range-visible::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 0 4px rgba(102,126,234,.18), 0 2px 6px rgba(102,126,234,.3);
+}
+
+.simpcucu-range-visible::-moz-range-track {
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 6px;
+    border: none;
+}
+
+.simpcucu-range-visible::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid #667eea;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(102,126,234,.3);
+    cursor: pointer;
+}
+
+.simpcucu-range-visible::-moz-range-progress {
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 6px;
+    height: 6px;
+}
+
+/* ─────────────────────────────────────────
+   TOGGLE SWITCH
+───────────────────────────────────────── */
+.simpcucu-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+}
+
+.simpcucu-toggle-row + .simpcucu-toggle-row {
+    border-top: 1px solid #f0f4f8;
+}
+
+.simpcucu-toggle-info {
+    flex: 1;
+    padding-right: 16px;
+}
+
+.simpcucu-toggle-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #2d3748;
+    display: block;
+}
+
+.simpcucu-toggle-desc {
+    font-size: 0.73rem;
+    color: #a0aec0;
+    display: block;
+    margin-top: 2px;
+}
+
+.simpcucu-toggle {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.simpcucu-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.simpcucu-toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: #cbd5e0;
+    border-radius: 26px;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.simpcucu-toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 3px;
+    top: 3px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform .2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+
+.simpcucu-toggle input:checked + .simpcucu-toggle-slider {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.simpcucu-toggle input:checked + .simpcucu-toggle-slider::before {
+    transform: translateX(20px);
+}
+
+/* ─────────────────────────────────────────
+   LIVE PREVIEW PANEL
+───────────────────────────────────────── */
+.simpcucu-preview-panel {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    margin-bottom: 16px;
+}
+
+.simpcucu-preview-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid #edf2f7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.simpcucu-preview-header h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin: 0;
+}
+
+.simpcucu-preview-badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #667eea;
+    background: #eef2ff;
+    border-radius: 20px;
+    padding: 2px 8px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.simpcucu-preview-stage {
+    height: 180px;
+    background: #1a202c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: none;
+    overflow: hidden;
+}
+
+.simpcucu-preview-stage::before {
+    content: 'Move cursor here to preview';
+    font-size: 0.75rem;
+    color: rgba(255,255,255,.25);
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.simpcucu-preview-center-text {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,.18);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Preview cursor elements */
+#simpcucu-prev-dot,
+#simpcucu-prev-outline,
+#simpcucu-prev-ch,
+#simpcucu-prev-cv {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+/* ─────────────────────────────────────────
+   SAVE BAR
+───────────────────────────────────────── */
+.simpcucu-save-bar {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+
+.simpcucu-save-note {
+    font-size: 0.8rem;
+    color: #718096;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.simpcucu-save-note::before {
+    content: '💡';
+    font-size: 0.85rem;
+}
+
+.simpcucu-save-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff !important;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 22px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity .15s, transform .12s, box-shadow .15s;
+    box-shadow: 0 4px 14px rgba(102,126,234,.4);
+    text-decoration: none;
+}
+
+.simpcucu-save-btn:hover {
+    opacity: .92;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(102,126,234,.45);
+}
+
+.simpcucu-save-btn:active {
+    transform: translateY(0);
+}
+
+/* ─────────────────────────────────────────
+   NOTICE (WP settings-updated)
+───────────────────────────────────────── */
+.simpcucu-wrap .notice {
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 782px) {
+    .simpcucu-layout {
+        flex-direction: column;
+    }
+    .simpcucu-sidebar {
+        width: 100%;
+        position: static;
+    }
+    .simpcucu-nav {
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 10px;
+    }
+    .simpcucu-nav li {
+        flex: 1 1 auto;
+    }
+    .simpcucu-nav-btn {
+        justify-content: center;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+        padding: 10px 12px;
+        font-size: 0.78rem;
+    }
+    .simpcucu-nav-btn.active {
+        border-left-color: transparent;
+        border-bottom-color: #667eea;
+    }
+    .simpcucu-nav li + li .simpcucu-nav-btn {
+        border-top: none;
+        border-left: 1px solid #f0f4f8;
+    }
+    .simpcucu-type-card {
+        width: 80px;
+        height: 76px;
+    }
+}
+
+/* ── Credit footer ── */
+.simpcucu-credit {
+    margin-top: 12px;
+    font-size: 11px;
+    color: #a0aec0;
+    text-align: right;
+    max-width: 980px;
+}
+.simpcucu-credit a {
+    color: #a0aec0;
+    text-decoration: underline;
+}
+.simpcucu-credit a:hover {
+    color: #667eea;
+}
